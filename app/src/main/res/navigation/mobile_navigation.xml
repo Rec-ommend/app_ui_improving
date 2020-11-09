@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.rec_commend.ui.dashboard.DashboardFragment"
+        android:name="com.example.rec_commend.ui.dashboard.MsearchFragment"
         android:label="@string/title_msearch"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_msearch" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.rec_commend.ui.notifications.NotificationsFragment"
+        android:name="com.example.rec_commend.ui.notifications.TsearchFragment"
         android:label="@string/title_tsearch"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_tsearch" />
 
     <fragment
         android:id="@+id/navigation_option"

@@ -1,4 +1,4 @@
-package com.example.rec_commend.ui.home;
+package com.example.rec_commend.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.rec_commend.R;
 
-public class HomeFragment extends Fragment {
+public class TsearchFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private TsearchViewModel tsearchViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        tsearchViewModel =
+                new ViewModelProvider(this).get(TsearchViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_tsearch, container, false);
+
         return root;
     }
 }

@@ -14,22 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.rec_commend.R;
 
-public class DashboardFragment extends Fragment {
+public class MsearchFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private MsearchViewModel msearchViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        msearchViewModel =
+                new ViewModelProvider(this).get(MsearchViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_msearch, container, false);
+        
         return root;
     }
 }
