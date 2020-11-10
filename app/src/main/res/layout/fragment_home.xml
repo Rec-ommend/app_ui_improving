@@ -17,7 +17,7 @@
         android:background="@android:color/transparent"
         android:foreground="?attr/selectableItemBackground"
         android:scaleType="fitCenter"
-        android:src="@drawable/b1" />
+        android:src="@drawable/msearch_btn_img" />
 
     <ImageButton
         android:id="@+id/tsearch_btn"
@@ -27,6 +27,6 @@
         android:background="@android:color/transparent"
         android:foreground="?attr/selectableItemBackground"
         android:scaleType="fitCenter"
-        android:src="@drawable/b2" />
+        android:src="@drawable/tsearch_btn_img" />
 
 </LinearLayout>
