@@ -4,5 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_weight="2"
     android:orientation="vertical"
-    tools:context=".ui.home.HomeFragment" />
+    tools:context=".ui.home.HomeFragment">
+
+    <ImageButton
+        android:id="@+id/msearch_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="fitCenter"
+        android:src="@drawable/b1" />
+
+    <ImageButton
+        android:id="@+id/tsearch_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="fitCenter"
+        android:src="@drawable/b2" />
+
+</LinearLayout>

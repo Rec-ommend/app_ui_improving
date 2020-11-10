@@ -1,16 +1,16 @@
-package com.example.rec_commend.ui.dashboard;
+package com.example.rec_commend.ui.tsearch;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MsearchViewModel extends ViewModel {
+public class TsearchViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MsearchViewModel() {
+    public TsearchViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is music search fragment");
+        mText.setValue("This is tune search fragment");
     }
 
     public LiveData<String> getText() {
