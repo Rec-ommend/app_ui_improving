@@ -15,13 +15,13 @@
         android:id="@+id/navigation_msearch"
         android:name="com.example.rec_commend.ui.msearch.MsearchFragment"
         android:label="@string/title_msearch"
-        tools:layout="@layout/fragment_msearch" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_tsearch"
         android:name="com.example.rec_commend.ui.tsearch.TsearchFragment"
         android:label="@string/title_tsearch"
-        tools:layout="@layout/fragment_tsearch" />
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_option"

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.rec_commend.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRecyclerViewAdapter.ViewHolder> {
 
@@ -46,8 +45,8 @@ public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRe
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.song_title);
+            mContentView = (TextView) view.findViewById(R.id.singer);
         }
 
         @Override
