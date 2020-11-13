@@ -13,26 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:text="공지사항"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/help_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:text="도움말"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/version_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:text="버전정보"
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/help_us_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Button" />
+        android:text="Help us"
+        android:textSize="30sp" />
 </LinearLayout>
