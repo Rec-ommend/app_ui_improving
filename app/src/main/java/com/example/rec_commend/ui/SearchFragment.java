@@ -92,7 +92,7 @@ public abstract class SearchFragment extends Fragment {
         recOverlay.setVisibility(View.INVISIBLE);
 
         timerText = root.findViewById(R.id.timer);
-        initTimerView();
+        initTimerView("녹음 버튼을 누르세요");
 
         waveFormView = root.findViewById(R.id.siriView);
         initWaveFormView();
@@ -178,8 +178,7 @@ public abstract class SearchFragment extends Fragment {
         recBtn.setVisibility(View.INVISIBLE);
         recOverlay.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-        initTimerView();
-        timerText.setText("잠시만 기다리세요...");
+        initTimerView("잠시만 기다리세요...");
         initWaveFormView();
 
         recorder.stop();
@@ -257,12 +256,14 @@ public abstract class SearchFragment extends Fragment {
         timer.schedule(ti,0,1000);
     }
 
-    private void initTimerView(){
+    private void initTimerView(String msg){
         if(ti != null) ti.cancel();
-        timerText.setText("");
+        timerText.setText(msg);
     }
 
     private void activateWaveFormView(){
+        waveFormView.setVisibility(View.VISIBLE);
+
         if(waveThread != null) waveThread.interrupt();
         waveThread = null;
         waveThread = new Thread(){
@@ -283,7 +284,8 @@ public abstract class SearchFragment extends Fragment {
         waveThread.start();
     }
     private void initWaveFormView(){
-        if(waveThread != null) waveThread.interrupt();
+        waveFormView.setVisibility(View.INVISIBLE);
         waveFormView.updateSpeaking(false);
+        if(waveThread != null) waveThread.interrupt();
     }
 }
