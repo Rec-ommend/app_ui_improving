@@ -29,4 +29,10 @@
         android:label="@string/title_option"
         tools:layout="@layout/fragment_option" />
 
+    <fragment
+        android:id="@+id/navigation_song_list"
+        android:name="com.example.rec_commend.ui.song_list.SongListFragment"
+        android:label="List"
+        tools:layout="@layout/fragment_song_list" />
+
 </navigation>

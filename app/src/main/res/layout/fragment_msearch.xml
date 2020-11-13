@@ -39,6 +39,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/m_json_test_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JSON TEST" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <ImageView

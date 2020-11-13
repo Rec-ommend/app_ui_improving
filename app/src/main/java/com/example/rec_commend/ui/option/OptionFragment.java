@@ -18,8 +18,7 @@ import com.example.rec_commend.ui.home.HomeViewModel;
 
 public class OptionFragment extends Fragment {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_option, container, false);
         return root;
     }
