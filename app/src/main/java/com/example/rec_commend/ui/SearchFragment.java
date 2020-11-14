@@ -195,9 +195,10 @@ public abstract class SearchFragment extends Fragment {
             (executionId1, returnCode) -> {
                 if (returnCode == RETURN_CODE_SUCCESS) {
                     Log.i(Config.TAG, "Async command execution completed successfully.");
-                    // Post Request
-                    //PostRequest(outputFile); //RELEASE
-                    postRequest(view, MP3TestFilePath); //DEBUG
+                    //Post Request
+                    //TODO: change to RELEASE code
+                    postRequest(view, outputFile); //RELEASE
+//                    postRequest(view, MP3TestFilePath); //DEBUG
                 } else if (returnCode == RETURN_CODE_CANCEL) {
                     Log.i(Config.TAG, "Async command execution cancelled by user.");
                 } else {
@@ -273,9 +274,11 @@ public abstract class SearchFragment extends Fragment {
                     waveFormView.updateSpeaking(true);
                     while (recorder!=null){
                         int amp = recorder.getMaxAmplitude();
-                        waveFormView.updateAmplitude(0.1f);
-                        System.out.println(amp);
-                        sleep(100);
+                        double logamp = Math.log10(amp);
+                        //TODO: change to RELEASE code
+                        waveFormView.updateAmplitude((float) (Math.pow(logamp, 3)/100.0f)); //RELEASE
+//                        waveFormView.updateAmplitude(0.1f); //DEBUG
+                        sleep(50);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
