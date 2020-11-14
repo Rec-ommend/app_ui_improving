@@ -14,7 +14,7 @@
         android:layout_margin="20dp"
         android:layout_weight="1"
         android:foreground="?attr/selectableItemBackground"
-        app:cardElevation="5dp">
+        app:cardElevation="2dp">
 
         <TextView
             android:id="@+id/msearch_btn_title"
@@ -48,7 +48,7 @@
         android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:foreground="?attr/selectableItemBackground"
-        app:cardElevation="5dp">
+        app:cardElevation="2dp">
 
         <TextView
             android:id="@+id/tsearch_btn_title"
