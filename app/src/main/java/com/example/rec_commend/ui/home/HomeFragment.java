@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -16,8 +17,8 @@ import com.example.rec_commend.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private ImageButton msearch_btn;
-    private ImageButton tsearch_btn;
+    private CardView msearch_btn;
+    private CardView tsearch_btn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -4,5 +4,15 @@
         android:fontStyle="normal"
         android:fontWeight="100"
         android:font="@font/nanum" />
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="300"
+        android:font="@font/nanum_square_bold" />
+
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="500"
+        android:font="@font/nanum_square_extra_bold" />
 </font-family>
 

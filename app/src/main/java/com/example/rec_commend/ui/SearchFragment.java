@@ -273,8 +273,9 @@ public abstract class SearchFragment extends Fragment {
                     waveFormView.updateSpeaking(true);
                     while (recorder!=null){
                         int amp = recorder.getMaxAmplitude();
-                        waveFormView.updateAmplitude(amp);
+                        waveFormView.updateAmplitude(0.1f);
                         System.out.println(amp);
+                        sleep(100);
                     }
                 }catch (Exception e){
                     e.printStackTrace();

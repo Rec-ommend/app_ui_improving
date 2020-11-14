@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.rec_commend.R;
@@ -18,8 +19,24 @@ import com.example.rec_commend.ui.home.HomeViewModel;
 
 public class OptionFragment extends Fragment {
 
+    //UI elements
+    private Button noticeBtn;
+    private Button preferenceBtn;
+    private Button helpBtn;
+    private Button versionBtn;
+    private Button helpUsBtn;
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_option, container, false);
+        noticeBtn = root.findViewById(R.id.notice_btn);
+        preferenceBtn = root.findViewById(R.id.preference_btn);
+        helpBtn = root.findViewById(R.id.help_btn);
+        versionBtn = root.findViewById(R.id.version_btn);
+        helpUsBtn = root.findViewById(R.id.help_us_btn);
+
+        preferenceBtn.setOnClickListener((view)->{
+
+        });
         return root;
     }
 }

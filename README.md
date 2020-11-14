@@ -1,4 +1,4 @@
-# Rec.commend appilation (UI improved)
+# Rec.commend application (UI improved)
 
 ## Screen shots
 

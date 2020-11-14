@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:layout_weight="4"
     android:orientation="vertical"
     tools:context=".ui.option.OptionFragment">
 
@@ -14,6 +13,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="공지사항"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/preference_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="사용자설정"
         android:textSize="30sp" />
 
     <Button
