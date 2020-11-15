@@ -55,8 +55,8 @@
 
     <fragment
         android:id="@+id/navigation_share"
-        android:name="com.example.rec_commend.ui.share.ShareFragment"
+        android:name="com.example.rec_commend.ui.share.VoiceColorFragment"
         android:label="@string/title_share"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_voice_color" />
 
 </navigation>

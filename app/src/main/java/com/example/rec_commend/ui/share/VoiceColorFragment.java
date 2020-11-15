@@ -6,8 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.BoringLayout;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +27,7 @@ import com.kakao.network.callback.ResponseCallback;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShareFragment extends Fragment {
+public class VoiceColorFragment extends Fragment {
 
     private static final String ARG_R = "r";
     private static final String ARG_G = "g";
@@ -44,17 +42,16 @@ public class ShareFragment extends Fragment {
     private Button instagramBtn;
     private Button twitterBtn;
     private Button popupCloseBtn;
-    private ImageView popupBackOverlay;
 
     // User voice color
     private int r;
     private int g;
     private int b;
 
-    public ShareFragment() {}
+    public VoiceColorFragment() {}
 
-    public static ShareFragment newInstance(int r, int g, int b) {
-        ShareFragment fragment = new ShareFragment();
+    public static VoiceColorFragment newInstance(int r, int g, int b) {
+        VoiceColorFragment fragment = new VoiceColorFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_R, r);
         args.putInt(ARG_G, g);
@@ -77,15 +74,12 @@ public class ShareFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+        View root = inflater.inflate(R.layout.fragment_voice_color, container, false);
         voiceColorView = root.findViewById(R.id.voice_color);
         voiceColorView.setColorFilter(Color.rgb(r, g, b));
-        popupBackOverlay = root.findViewById(R.id.popup_back_overlay);
-        popupBackOverlay.setVisibility(View.INVISIBLE);
 
         shareBtn = root.findViewById(R.id.share_btn);
         shareBtn.setOnClickListener((view)->{
-            popupBackOverlay.setVisibility(View.VISIBLE);
             initPopup();
         });
 
@@ -99,13 +93,24 @@ public class ShareFragment extends Fragment {
         sharePopup = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         sharePopup.showAtLocation(layout, Gravity.CENTER, 0,0);
 
+        // Set popup back dim
+        View container = sharePopup.getContentView().getRootView();
+        Context context = sharePopup.getContentView().getContext();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.3f;
+        wm.updateViewLayout(container, p);
+
+        sharePopup.setOnDismissListener(()->{
+        });
+
         kakaoBtn = (Button) layout.findViewById(R.id.kakao_btn);
         kakaoBtn.setOnClickListener(this::setKakaoBtn);
 
         popupCloseBtn = (Button) layout.findViewById(R.id.popup_close_btn);
         popupCloseBtn.setOnClickListener((view)->{
             sharePopup.dismiss();
-            popupBackOverlay.setVisibility(View.INVISIBLE);
         });
 
     }

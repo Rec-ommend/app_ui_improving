@@ -140,8 +140,8 @@ public abstract class SearchFragment extends Fragment {
         colorTestBtn.setOnClickListener((view)->{
             Bundle bundle = new Bundle();
             bundle.putInt("r", 255);
-            bundle.putInt("g", 255);
-            bundle.putInt("b", 0);
+            bundle.putInt("g", 100);
+            bundle.putInt("b", 155);
             Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
         });
 
