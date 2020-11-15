@@ -1,35 +1,37 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
-
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="true"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
-
+    <PreferenceCategory app:title="@string/title_preference_genre">
+        <MultiSelectListPreference
+            app:key="genre"
+            app:entries="@array/genres"
+            app:entryValues="@array/genres"
+            app:defaultValue="@array/genres"
+            app:persistent="true"
+            app:summary="@string/title_preference_genre_summary"
+            app:dialogTitle="@string/title_preference_genre"
+            app:icon="@drawable/ic_baseline_library_music_24"
+            />
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
-
+    <PreferenceCategory app:title="@string/title_preference_year">
+        <DropDownPreference
+            app:title="@string/title_preference_year_start"
+            app:key="start_year"
+            app:entries="@array/years"
+            app:entryValues="@array/years"
+            app:defaultValue="2000"
+            app:persistent="true"
+            app:useSimpleSummaryProvider="true"
+            />
+        <DropDownPreference
+            app:title="@string/title_preference_year_end"
+            app:key="end_year"
+            app:entries="@array/years"
+            app:entryValues="@array/years"
+            app:defaultValue="2020"
+            app:persistent="true"
+            app:useSimpleSummaryProvider="true"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>

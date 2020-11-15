@@ -2,6 +2,7 @@ package com.example.rec_commend.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
 import android.os.Build;
@@ -21,6 +22,9 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
@@ -30,7 +34,9 @@ import com.example.rec_commend.R;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -77,6 +83,9 @@ public abstract class SearchFragment extends Fragment {
 
     //wave form view thread
     private Thread waveThread;
+
+    //app preference
+    private SharedPreferences preferences;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //setting UI elements
@@ -197,8 +206,8 @@ public abstract class SearchFragment extends Fragment {
                     Log.i(Config.TAG, "Async command execution completed successfully.");
                     //Post Request
                     //TODO: change to RELEASE code
-                    postRequest(view, outputFile); //RELEASE
-//                    postRequest(view, MP3TestFilePath); //DEBUG
+//                    postRequest(view, outputFile); //RELEASE
+                    postRequest(view, MP3TestFilePath); //DEBUG
                 } else if (returnCode == RETURN_CODE_CANCEL) {
                     Log.i(Config.TAG, "Async command execution cancelled by user.");
                 } else {
@@ -220,6 +229,15 @@ public abstract class SearchFragment extends Fragment {
 
                     multipart.addFilePart("voice", new File(filePath));
 
+                    preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    String[] genreArr = (String[]) preferences.getStringSet("genre", new HashSet<String>()).toArray(new String[0]);
+                    String genres = String.join("', '", genreArr);
+                    genres = "['" + genres + "']";
+                    System.out.println(genres);
+                    multipart.addFormField("genre", genres);
+                    multipart.addFormField("start", preferences.getString("start_year", "2000"));
+                    multipart.addFormField("end", preferences.getString("end_year", "2020"));
+
                     List<String> response = multipart.finish();
 
                     System.out.println("SERVER REPLIED:");
@@ -231,7 +249,8 @@ public abstract class SearchFragment extends Fragment {
                     // Sending data to result page.
                     Bundle bundle = new Bundle();
                     bundle.putString("jsonData", fullResponse);
-                    getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle));
+                    if(getActivity() != null)
+                        getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle));
 
                 } catch (IOException e) {
                     e.printStackTrace();

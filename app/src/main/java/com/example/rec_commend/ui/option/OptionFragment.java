@@ -7,7 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
+import android.preference.PreferenceActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +39,7 @@ public class OptionFragment extends Fragment {
         helpUsBtn = root.findViewById(R.id.help_us_btn);
 
         preferenceBtn.setOnClickListener((view)->{
-
+            Navigation.findNavController(view).navigate(R.id.navigation_preference);
         });
         return root;
     }
