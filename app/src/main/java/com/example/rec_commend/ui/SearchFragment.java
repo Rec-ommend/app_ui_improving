@@ -51,6 +51,7 @@ public abstract class SearchFragment extends Fragment {
     private ImageButton recBtn;
     private ImageView recOverlay;
     private Button jsonTestBtn;
+    private Button colorTestBtn;
     private TextView timerText;
     private WaveFormView waveFormView;
     private ProgressBar progressBar;
@@ -108,6 +109,8 @@ public abstract class SearchFragment extends Fragment {
 
         jsonTestBtn = root.findViewById(R.id.json_test_btn);
 
+        colorTestBtn = root.findViewById(R.id.color_test_btn);
+
         progressBar = root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -117,7 +120,6 @@ public abstract class SearchFragment extends Fragment {
         MP4FilePath = commonPath + ".mp4";
         MP3FilePath = commonPath + ".mp3";
         MP3TestFilePath = Paths.get(getContext().getDataDir().getPath(), "TestVoice.mp3").toString();
-
         isRecording = false;
         recBtn.setOnClickListener((view)->{
             if(!isRecording){
@@ -133,6 +135,14 @@ public abstract class SearchFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("jsonData", testJson);
             Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle);
+        });
+
+        colorTestBtn.setOnClickListener((view)->{
+            Bundle bundle = new Bundle();
+            bundle.putInt("r", 255);
+            bundle.putInt("g", 255);
+            bundle.putInt("b", 0);
+            Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
         });
 
         return root;

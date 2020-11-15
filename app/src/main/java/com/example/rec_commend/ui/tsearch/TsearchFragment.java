@@ -14,9 +14,7 @@ import com.example.rec_commend.ui.SearchFragment;
 public class TsearchFragment extends SearchFragment {
 
     @Override
-    protected void setDescription() {
-        descriptionText.setText("노래의 일부를 들려주면\n그 노래와 유사한 노래를 찾아줍니다.");
-    }
+    protected void setDescription() { descriptionText.setText(R.string.description_tsearch); }
 
     @Override
     protected void setPostURL() {

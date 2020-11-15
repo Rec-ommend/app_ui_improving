@@ -53,4 +53,10 @@
         android:label="@string/title_preference"
         tools:layout="@layout/fragment_preference" />
 
+    <fragment
+        android:id="@+id/navigation_share"
+        android:name="com.example.rec_commend.ui.share.ShareFragment"
+        android:label="@string/title_share"
+        tools:layout="@layout/fragment_share" />
+
 </navigation>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,11 +25,11 @@ import com.example.rec_commend.ui.home.HomeViewModel;
 public class OptionFragment extends Fragment {
 
     //UI elements
-    private Button noticeBtn;
-    private Button preferenceBtn;
-    private Button helpBtn;
-    private Button versionBtn;
-    private Button helpUsBtn;
+    private CardView noticeBtn;
+    private CardView preferenceBtn;
+    private CardView helpBtn;
+    private CardView versionBtn;
+    private CardView helpUsBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_option, container, false);

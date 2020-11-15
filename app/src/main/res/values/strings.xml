@@ -2,7 +2,9 @@
     <string name="app_name">Rec.commend</string>
     <string name="title_home">Home</string>
     <string name="title_msearch">Music Search</string>
+    <string name="description_msearch">본인의 목소리를 녹음하여\n부르기 쉬운 노래를 추천합니다.</string>
     <string name="title_tsearch">Tune Search</string>
+    <string name="description_tsearch">노래의 일부를 들려주면\n그 노래와 유사한 노래를 찾아줍니다.</string>
     <string name="title_option">Option</string>
     <string name="title_song_list">Result</string>
     <string name="title_preference">Preference</string>
@@ -11,4 +13,7 @@
     <string name="title_preference_year">선호 연도</string>
     <string name="title_preference_year_start">시작 연도</string>
     <string name="title_preference_year_end">끝 연도</string>
+    <string name="title_share">Share</string>
+    <string name="description_share">당신의 Voice Color 는</string>
+    <string name="title_share_btn">공유하기</string>
 </resources>

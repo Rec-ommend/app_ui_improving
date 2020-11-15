@@ -15,7 +15,7 @@ public class MsearchFragment extends SearchFragment {
 
     @Override
     protected void setDescription() {
-        descriptionText.setText("본인의 목소리를 녹음하여\n부르기 쉬운 노래를 추천합니다.");
+        descriptionText.setText(R.string.description_msearch);
     }
 
     @Override

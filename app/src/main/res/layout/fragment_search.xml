@@ -28,9 +28,8 @@
             android:layout_weight="1"
             android:gravity="center_horizontal|top"
             android:maxLines="2"
-            android:text="노래의 일부를 들려주면\n그 노래와 유사한 노래를 찾아줍니다."
+            android:text="@string/description_msearch"
             android:textColor="@color/black"
-            android:textSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <ImageButton
@@ -61,7 +60,16 @@
                 android:id="@+id/json_test_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:text="JSON TEST" />
+
+            <Button
+                android:id="@+id/color_test_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="COLOR TEST" />
 
         </LinearLayout>
 
