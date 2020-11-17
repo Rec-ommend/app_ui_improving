@@ -13,6 +13,19 @@
         <item>성인가요</item>
     </string-array>
 
+    <string-array name="genres_title">
+        <item>랩/힙합</item>
+        <item>댄스</item>
+        <item>록/메탈</item>
+        <item>R&amp;B/Soul</item>
+        <item>발라드</item>
+        <item>포크/블루스</item>
+        <item>국내드라마</item>
+        <item>인디음악</item>
+        <item>일렉트로니카</item>
+        <item>트로트</item>
+    </string-array>
+
     <string-array name="years">
         <item>2000</item>
         <item>2001</item>

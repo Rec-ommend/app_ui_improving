@@ -18,13 +18,19 @@
         android:textColor="@color/black"
         android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/voice_color"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/white"
-        app:tint="@color/light_blue_600" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:id="@+id/voice_color"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/white"
+            app:tint="@color/light_blue_600" />
+    </androidx.cardview.widget.CardView>
 
     <Space
         android:layout_width="match_parent"
@@ -39,6 +45,7 @@
         android:fontFamily="@font/nanum_square_bold"
         android:text="@string/title_share_btn"
         android:textSize="30sp"
+        app:cornerRadius="15dp"
         app:icon="@drawable/ic_baseline_share_24" />
 
     <Space
