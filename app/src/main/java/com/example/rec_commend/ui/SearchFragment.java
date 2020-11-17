@@ -1,6 +1,9 @@
 package com.example.rec_commend.ui;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -48,7 +53,7 @@ public abstract class SearchFragment extends Fragment {
 
     //UI elements
     protected TextView descriptionText;
-    private ImageButton recBtn;
+    private Button recBtn;
     private ImageView recOverlay;
     private Button jsonTestBtn;
     private Button colorTestBtn;
@@ -96,7 +101,6 @@ public abstract class SearchFragment extends Fragment {
         setDescription();
 
         recBtn = root.findViewById(R.id.rec_btn);
-        recBtn.setImageResource(R.drawable.ic_baseline_fiber_manual_record_24);
 
         recOverlay = root.findViewById(R.id.rec_overlay);
         recOverlay.setVisibility(View.INVISIBLE);
@@ -121,10 +125,12 @@ public abstract class SearchFragment extends Fragment {
         MP3FilePath = commonPath + ".mp3";
         MP3TestFilePath = Paths.get(getContext().getDataDir().getPath(), "TestVoice.mp3").toString();
         isRecording = false;
+        recBtn.setSelected(false);
         recBtn.setOnClickListener((view)->{
             if(!isRecording){
                 isRecording = true;
                 startRecording(MP4FilePath);
+                recBtn.setSelected(true);
             }else{
                 isRecording = false;
                 stopRecording(view);
@@ -172,7 +178,6 @@ public abstract class SearchFragment extends Fragment {
     }
 
     private void startRecording(String path) {
-        recBtn.setImageResource(R.drawable.ic_baseline_stop_24);
         recOverlay.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.INVISIBLE);
         timerViewStart();
@@ -264,6 +269,8 @@ public abstract class SearchFragment extends Fragment {
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (NullPointerException e){
+                    e.printStackTrace();
                 }
             }
         };
@@ -293,6 +300,9 @@ public abstract class SearchFragment extends Fragment {
 
     private void activateWaveFormView(){
         waveFormView.setVisibility(View.VISIBLE);
+        AnimatorSet waveformCreationAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.wave_view_anim);
+        waveformCreationAnim.setTarget(waveFormView);
+        waveformCreationAnim.start();
 
         if(waveThread != null) waveThread.interrupt();
         waveThread = null;

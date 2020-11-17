@@ -10,7 +10,7 @@
         android:id="@+id/siriView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"></com.example.rec_commend.ui.WaveFormView>
+        android:layout_marginBottom="50dp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -32,15 +32,21 @@
             android:textColor="@color/black"
             app:autoSizeTextType="uniform" />
 
-        <ImageButton
-            android:id="@+id/rec_btn"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:padding="30dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_fiber_manual_record_24" />
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/rec_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:elevation="10dp"
+                android:stateListAnimator="@animator/rec_btn_anim"
+                app:cornerRadius="0dp" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/timer"
@@ -81,7 +87,8 @@
         android:layout_height="match_parent"
         android:alpha="0.14"
         android:src="@android:drawable/screen_background_light"
-        app:tint="#ff0000" />
+        app:tint="#ff0000"
+        tools:visibility="invisible" />
 
     <ProgressBar
         android:id="@+id/progressBar"
