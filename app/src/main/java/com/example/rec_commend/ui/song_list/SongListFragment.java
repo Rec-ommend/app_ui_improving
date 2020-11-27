@@ -81,11 +81,8 @@ public class SongListFragment extends Fragment {
 
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setAdapter(new SongListRecyclerViewAdapter(songList));
-        }
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.song_list);
+        recyclerView.setAdapter(new SongListRecyclerViewAdapter(songList));
         return view;
     }
 }

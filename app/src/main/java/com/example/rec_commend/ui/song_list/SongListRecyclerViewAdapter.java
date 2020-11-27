@@ -27,8 +27,9 @@ public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).title);
-        holder.mContentView.setText(mValues.get(position).singer);
+        holder.mIndexView.setText(Integer.toString(position + 1));
+        holder.mTitleView.setText(mValues.get(position).title);
+        holder.mInfoView.setText(mValues.get(position).info);
     }
 
     @Override
@@ -38,20 +39,22 @@ public class SongListRecyclerViewAdapter extends RecyclerView.Adapter<SongListRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mIndexView;
+        public final TextView mTitleView;
+        public final TextView mInfoView;
         public SongListItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.song_title);
-            mContentView = (TextView) view.findViewById(R.id.singer);
+            mIndexView = (TextView) view.findViewById(R.id.index);
+            mTitleView = (TextView) view.findViewById(R.id.song_title);
+            mInfoView = (TextView) view.findViewById(R.id.song_info);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mTitleView.getText() + "'";
         }
     }
 }
