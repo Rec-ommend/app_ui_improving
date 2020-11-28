@@ -56,7 +56,6 @@ public abstract class SearchFragment extends Fragment {
     private Button recBtn;
     private ImageView recOverlay;
     private Button jsonTestBtn;
-    private Button colorTestBtn;
     private TextView timerText;
     private WaveFormView waveFormView;
     private ProgressBar progressBar;
@@ -85,7 +84,7 @@ public abstract class SearchFragment extends Fragment {
     //variable for http post
     private Thread postThread;
     protected static String urlString;
-    private static final String testJson = "[{\"id\":\"tmFmFNn5-OM\",\"title\":\"Puss (Prod.by \\ub77c\\uc774\\uba38)\",\"singer\":\"\\uc9c0\\ubbfc (AOA), \\uc544\\uc774\\uc5b8\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2015.03.20\",\"timbre_similarity\":98.7300118817},{\"id\":\"LmApDbvNCXg\",\"title\":\"Outro : Ego\",\"singer\":\"\\ubc29\\ud0c4\\uc18c\\ub144\\ub2e8\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2020.02.21\",\"timbre_similarity\":139.5603603933},{\"id\":\"dj-OEG32OR4\",\"title\":\"Forever (Prod. By GRAY)\",\"singer\":\"BewhY (\\ube44\\uc640\\uc774)\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2016.07.02\",\"timbre_similarity\":140.948202667},{\"id\":\"E-HXf-Dih3c\",\"title\":\"\\uc0ac\\uc774\\uba3c \\ub3c4\\ubbf8\\ub2c9\",\"singer\":\"\\uc0ac\\uc774\\uba3c \\ub3c4\\ubbf8\\ub2c9\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2015.08.21\",\"timbre_similarity\":143.5430228883},{\"id\":\"aFsS59DkFhc\",\"title\":\"Okey Dokey\",\"singer\":\"MINO (\\uc1a1\\ubbfc\\ud638), \\uc9c0\\ucf54 (ZICO)\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2015.08.29\",\"timbre_similarity\":153.3020229043},{\"id\":\"vRXZj0DzXIA\",\"title\":\"Ice Cream (with Selena Gomez)\",\"singer\":\"BLACKPINK\",\"genre\":\"\\ub304\\uc2a4\",\"release\":\"2020.08.28\",\"timbre_similarity\":161.693719075},{\"id\":\"VTASffPQGhY\",\"title\":\"\\ub204\\ub09c \\ub108\\ubb34 \\uc608\\ubed0 (Replay)\",\"singer\":\"SHINee (\\uc0e4\\uc774\\ub2c8)\",\"genre\":\"\\ub304\\uc2a4\",\"release\":\"2008.05.22\",\"timbre_similarity\":162.2474205873},{\"id\":\"of2GzuZGxo0\",\"title\":\"STILL ALIVE\",\"singer\":\"BIGBANG\",\"genre\":\"\\ub304\\uc2a4\",\"release\":\"2012.06.03\",\"timbre_similarity\":166.8970531035},{\"id\":\"jTYtNlSnn7g\",\"title\":\"I` ll Be There\",\"singer\":\"\\uc774\\ube0c\",\"genre\":\"\\ub85d\\/\\uba54\\ud0c8\",\"release\":\"2001.04.11\",\"timbre_similarity\":168.3398402292},{\"id\":\"wd2qbIh6wYQ\",\"title\":\"Moon\",\"singer\":\"\\ubc29\\ud0c4\\uc18c\\ub144\\ub2e8\",\"genre\":\"\\ub7a9\\/\\ud799\\ud569\",\"release\":\"2020.02.21\",\"timbre_similarity\":170.050908522}]\n";
+    private static final String testJson = "{\"song\":\"[{\\\"id\\\":\\\"tmFmFNn5-OM\\\",\\\"title\\\":\\\"Puss (Prod.by \\\\ub77c\\\\uc774\\\\uba38)\\\",\\\"singer\\\":\\\"\\\\uc9c0\\\\ubbfc (AOA), \\\\uc544\\\\uc774\\\\uc5b8\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.03.20\\\",\\\"timbre_similarity\\\":98.7300118817},{\\\"id\\\":\\\"dj-OEG32OR4\\\",\\\"title\\\":\\\"Forever (Prod. By GRAY)\\\",\\\"singer\\\":\\\"BewhY (\\\\ube44\\\\uc640\\\\uc774)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2016.07.02\\\",\\\"timbre_similarity\\\":140.948202667},{\\\"id\\\":\\\"E-HXf-Dih3c\\\",\\\"title\\\":\\\"\\\\uc0ac\\\\uc774\\\\uba3c \\\\ub3c4\\\\ubbf8\\\\ub2c9\\\",\\\"singer\\\":\\\"\\\\uc0ac\\\\uc774\\\\uba3c \\\\ub3c4\\\\ubbf8\\\\ub2c9\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.08.21\\\",\\\"timbre_similarity\\\":143.5430228883},{\\\"id\\\":\\\"aFsS59DkFhc\\\",\\\"title\\\":\\\"Okey Dokey\\\",\\\"singer\\\":\\\"MINO (\\\\uc1a1\\\\ubbfc\\\\ud638), \\\\uc9c0\\\\ucf54 (ZICO)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.08.29\\\",\\\"timbre_similarity\\\":153.3020229043},{\\\"id\\\":\\\"UsaJsymfuWU\\\",\\\"title\\\":\\\"Boys And Girls (Feat. Babylon)\\\",\\\"singer\\\":\\\"\\\\uc9c0\\\\ucf54 (ZICO)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.11.03\\\",\\\"timbre_similarity\\\":174.1333598163},{\\\"id\\\":\\\"iIPH8LFYFRk\\\",\\\"title\\\":\\\"\\\\uc5d0\\\\ub77c \\\\ubaa8\\\\ub974\\\\uaca0\\\\ub2e4\\\",\\\"singer\\\":\\\"BIGBANG\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2016.12.13\\\",\\\"timbre_similarity\\\":185.7990052656},{\\\"id\\\":\\\"pFuJAIMQjHk\\\",\\\"title\\\":\\\"\\\\uc74c\\\\uc624\\\\uc544\\\\uc608 (Um Oh Ah Yeh)\\\",\\\"singer\\\":\\\"\\\\ub9c8\\\\ub9c8\\\\ubb34 (Mamamoo)\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2015.06.19\\\",\\\"timbre_similarity\\\":202.6362291478},{\\\"id\\\":\\\"gx_mg-1WhWw\\\",\\\"title\\\":\\\"\\\\ubab8\\\\ub9e4 (MOMMAE) (Feat. Ugly Duck)\\\",\\\"singer\\\":\\\"\\\\ubc15\\\\uc7ac\\\\ubc94\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.05.22\\\",\\\"timbre_similarity\\\":203.4665086794},{\\\"id\\\":\\\"F4qfN5UeFvQ\\\",\\\"title\\\":\\\"\\\\uc8fc\\\\uc778\\\\uacf5\\\",\\\"singer\\\":\\\"\\\\uc120\\\\ubbf8\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2018.01.18\\\",\\\"timbre_similarity\\\":204.769446035},{\\\"id\\\":\\\"89kTb73csYg\\\",\\\"title\\\":\\\"Forever Young\\\",\\\"singer\\\":\\\"BLACKPINK\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2018.06.15\\\",\\\"timbre_similarity\\\":209.8093504768}]\",\"timbre\":{\"boominess\":0.3933148122086359,\"brightness\":0.916696793346051,\"depth\":0.3244571326418235,\"hardness\":1.3787054791923,\"reverb\":0,\"roughness\":1.1120699737927724,\"sharpness\":0.9450311890492772,\"warmth\":0.07938602069283819}}";
 
     //wave form view thread
     private Thread waveThread;
@@ -113,8 +112,6 @@ public abstract class SearchFragment extends Fragment {
 
         jsonTestBtn = root.findViewById(R.id.json_test_btn);
 
-        colorTestBtn = root.findViewById(R.id.color_test_btn);
-
         progressBar = root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -141,14 +138,6 @@ public abstract class SearchFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("jsonData", testJson);
             Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle);
-        });
-
-        colorTestBtn.setOnClickListener((view)->{
-            Bundle bundle = new Bundle();
-            bundle.putInt("r", 255);
-            bundle.putInt("g", 100);
-            bundle.putInt("b", 155);
-            Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
         });
 
         return root;

@@ -13,48 +13,60 @@
 
         <Button
             android:id="@+id/kakao_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
-            android:drawableLeft="@drawable/kakaotalk_icon"
+            android:backgroundTint="@color/com_kakao_button_background_press"
             android:fontFamily="@font/nanum_square_bold"
             android:text="Kakao talk"
             android:textColor="@color/black"
-            app:cornerRadius="15dp" />
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_kakao_talk"
+            app:iconSize="25dp"
+            app:iconTint="@color/com_kakao_brown" />
 
         <Button
             android:id="@+id/facebook_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/facebook_color"
             android:fontFamily="@font/nanum_square_bold"
             android:text="Facebook"
-            android:textColor="@color/black"
-            app:cornerRadius="15dp" />
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_facebook"
+            app:iconSize="25dp" />
 
         <Button
             android:id="@+id/instagram_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/instagram_color"
             android:fontFamily="@font/nanum_square_bold"
             android:text="Instagram"
-            android:textColor="@color/black"
-            app:cornerRadius="15dp" />
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_instagram"
+            app:iconSize="25dp" />
 
         <Button
             android:id="@+id/twitter_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/twitter_color"
             android:fontFamily="@font/nanum_square_bold"
             android:text="Twitter"
-            android:textColor="@color/black"
-            app:cornerRadius="15dp" />
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:icon="@drawable/ic_twitter"
+            app:iconSize="25dp" />
 
         <Button
             android:id="@+id/popup_close_btn"
@@ -65,6 +77,7 @@
             android:fontFamily="@font/nanum_square_bold"
             android:text="Close"
             android:textColor="@color/white"
+            android:textSize="18sp"
             app:cornerRadius="15dp" />
     </LinearLayout>
 

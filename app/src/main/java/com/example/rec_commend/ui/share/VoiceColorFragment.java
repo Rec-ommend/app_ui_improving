@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
+import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
 import com.kakao.kakaolink.v2.KakaoLinkResponse;
 import com.kakao.kakaolink.v2.KakaoLinkService;
@@ -83,6 +85,12 @@ public class VoiceColorFragment extends Fragment {
             initPopup();
         });
 
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+        }
 
         return root;
     }
@@ -113,6 +121,12 @@ public class VoiceColorFragment extends Fragment {
             sharePopup.dismiss();
         });
 
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+        }
     }
 
     public void setKakaoBtn(View v) {

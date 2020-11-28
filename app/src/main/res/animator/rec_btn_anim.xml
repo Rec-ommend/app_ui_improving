@@ -15,11 +15,6 @@
                 android:propertyName="scaleY"
                 android:valueTo="0.9"
                 android:valueType="floatType" />
-            <objectAnimator
-                android:duration="0"
-                android:propertyName="cornerRadius"
-                android:valueTo="50dp"
-                android:valueType="intType"/>
         </set>
     </item>
     <!-- base state -->
@@ -45,23 +40,42 @@
                 android:valueType="intType"/>
         </set>
     </item>
-    <item android:state_selected="true">
+    <item android:state_pressed="false"
+        android:state_selected="true">
         <set>
             <objectAnimator
-                android:duration="50"
+                android:duration="800"
                 android:propertyName="scaleX"
-                android:valueTo="1"
-                android:valueType="floatType" />
+                android:valueTo="0.8"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/bounce"/>
             <objectAnimator
-                android:duration="50"
+                android:duration="800"
                 android:propertyName="scaleY"
-                android:valueTo="1"
-                android:valueType="floatType" />
+                android:valueTo="0.8"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/bounce"/>
             <objectAnimator
-                android:duration="300"
+                android:duration="500"
                 android:propertyName="cornerRadius"
                 android:valueTo="0dp"
                 android:valueType="intType"/>
+        </set>
+    </item>
+    <item android:state_enabled="true"
+        android:state_pressed="true"
+        android:state_selected="true">
+        <set>
+            <objectAnimator
+                android:duration="100"
+                android:propertyName="scaleX"
+                android:valueTo="0.75"
+                android:valueType="floatType" />
+            <objectAnimator
+                android:duration="100"
+                android:propertyName="scaleY"
+                android:valueTo="0.75"
+                android:valueType="floatType" />
         </set>
     </item>
 </selector>

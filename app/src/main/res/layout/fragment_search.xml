@@ -67,16 +67,7 @@
                 android:id="@+id/json_test_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:text="JSON TEST" />
-
-            <Button
-                android:id="@+id/color_test_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="COLOR TEST" />
 
         </LinearLayout>
 

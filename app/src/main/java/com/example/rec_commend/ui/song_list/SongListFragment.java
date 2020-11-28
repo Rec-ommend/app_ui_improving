@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
@@ -19,16 +21,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * A fragment representing a list of Items.
  */
 public class SongListFragment extends Fragment {
 
+    //UI elements
+    private RecyclerView recyclerView;
+    private ImageButton myVoiceBtn;
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "jsonData";
 
     private String jsonData;
+    private Map<String, Double> voiceTimbre = new HashMap<String, Double>();
+
     private ArrayList<SongListItem> songList;
 
     /**
@@ -59,30 +70,70 @@ public class SongListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_song_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_song_list, container, false);
+        myVoiceBtn = root.findViewById(R.id.my_voice_btn);
 
         songList = new ArrayList<SongListItem>();
         try {
-            JSONArray jsonArray = new JSONArray(jsonData);
-            for(int i = 0; i<jsonArray.length(); i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONArray songArray = new JSONArray(jsonObject.getString("song"));
+            for(int i = 0; i < songArray.length(); i++){
+                JSONObject jsonSong = (JSONObject) songArray.get(i);
                 songList.add(new SongListItem(
-                        jsonObject.getString("id"),
-                        jsonObject.getString("title"),
-                        jsonObject.getString("singer"),
-                        jsonObject.getString("genre"),
-                        jsonObject.getString("release"),
-                        jsonObject.getDouble("timbre_similarity")
+                        jsonSong.getString("id"),
+                        jsonSong.getString("title"),
+                        jsonSong.getString("singer"),
+                        jsonSong.getString("genre"),
+                        jsonSong.getString("release"),
+                        jsonSong.getDouble("timbre_similarity")
                 ));
             }
+
+            JSONObject voiceTimbreObject = jsonObject.getJSONObject("timbre");
+            JSONArray attrs = voiceTimbreObject.names();
+            for(int i = 0; i < attrs.length(); i++){
+                String attr = attrs.getString(i);
+                voiceTimbre.put(attr, voiceTimbreObject.getDouble(attr));
+            }
+            System.out.println(voiceTimbre);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        myVoiceBtn.setOnClickListener((view)->{
+            int[] rgb = colorMapping(voiceTimbre);
+            Bundle bundle = new Bundle();
+            bundle.putInt("r", rgb[0]);
+            bundle.putInt("g", rgb[1]);
+            bundle.putInt("b", rgb[2]);
+            Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
+        });
+
+
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(false); // disable the button
+            actionBar.setDisplayHomeAsUpEnabled(false); // remove the left caret
+            actionBar.setDisplayShowHomeEnabled(false); // remove the icon
+        }
 
         // Set the adapter
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.song_list);
+        recyclerView = (RecyclerView) root.findViewById(R.id.song_list);
         recyclerView.setAdapter(new SongListRecyclerViewAdapter(songList));
-        return view;
+        return root;
+    }
+
+    private int[] colorMapping(Map<String, Double> timbre){
+        double depth = Math.max(Math.min(timbre.get("depth"), 1), 0);
+        double brightness = Math.max(Math.min(timbre.get("brightness"), 1), 0);
+        double roughness = Math.max(Math.min(timbre.get("roughness"), 1), 0);
+        double warmth = Math.max(Math.min(timbre.get("warmth"), 1), 0);
+        double sharpness = Math.max(Math.min(timbre.get("sharpness"), 1), 0);
+        double boominess = Math.max(Math.min(timbre.get("boominess"), 1), 0);
+        int r = (int) (roughness * 225 + 15 + warmth * 15);
+        int g = (int) (sharpness * 225 + 15 + brightness * 15);
+        int b = (int) (boominess * 225 + 15 + depth * 15);
+        return new int[]{r, g, b};
     }
 }
