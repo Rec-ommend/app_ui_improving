@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
@@ -36,6 +37,7 @@ public class VoiceColorFragment extends Fragment {
     private static final String ARG_B = "b";
 
     // UI elements
+    private TextView voiceColorHex;
     private ImageView voiceColorView;
     private Button shareBtn;
     private PopupWindow sharePopup;
@@ -77,6 +79,10 @@ public class VoiceColorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_voice_color, container, false);
+
+        voiceColorHex = root.findViewById(R.id.voice_color_hex);
+        voiceColorHex.setText(String.format("#%02X%02X%02X", r, g, b));
+
         voiceColorView = root.findViewById(R.id.voice_color);
         voiceColorView.setColorFilter(Color.rgb(r, g, b));
 

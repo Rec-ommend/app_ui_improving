@@ -1,6 +1,5 @@
 package com.example.rec_commend.ui.song_list;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -22,7 +21,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -38,9 +36,7 @@ public class SongListFragment extends Fragment {
     private static final String ARG_PARAM1 = "jsonData";
 
     private String jsonData;
-    private Map<String, Double> voiceTimbre = new HashMap<String, Double>();
-
-    private ArrayList<SongListItem> songList;
+    private final Map<String, Double> voiceTimbreNorm = new HashMap<String, Double>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -73,7 +69,7 @@ public class SongListFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_song_list, container, false);
         myVoiceBtn = root.findViewById(R.id.my_voice_btn);
 
-        songList = new ArrayList<SongListItem>();
+        ArrayList<SongListItem> songList = new ArrayList<SongListItem>();
         try {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONArray songArray = new JSONArray(jsonObject.getString("song"));
@@ -89,20 +85,20 @@ public class SongListFragment extends Fragment {
                 ));
             }
 
-            JSONObject voiceTimbreObject = jsonObject.getJSONObject("timbre");
-            JSONArray attrs = voiceTimbreObject.names();
+            JSONObject voiceTimbreNormObject = jsonObject.getJSONObject("timbre");
+            JSONArray attrs = voiceTimbreNormObject.names();
             for(int i = 0; i < attrs.length(); i++){
                 String attr = attrs.getString(i);
-                voiceTimbre.put(attr, voiceTimbreObject.getDouble(attr));
+                voiceTimbreNorm.put(attr, voiceTimbreNormObject.getDouble(attr));
             }
-            System.out.println(voiceTimbre);
+            System.out.println(voiceTimbreNorm);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         myVoiceBtn.setOnClickListener((view)->{
-            int[] rgb = colorMapping(voiceTimbre);
+            int[] rgb = colorMapping(voiceTimbreNorm);
             Bundle bundle = new Bundle();
             bundle.putInt("r", rgb[0]);
             bundle.putInt("g", rgb[1]);
