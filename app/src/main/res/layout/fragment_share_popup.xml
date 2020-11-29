@@ -94,7 +94,7 @@
             android:backgroundTint="#FFD9CF"
             android:layout_gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="Depth"
+            android:text="Roughness"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
@@ -105,7 +105,7 @@
             android:backgroundTint="#FFE2CA"
             android:layout_gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="Brightness"
+            android:text="Warmth"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
@@ -116,7 +116,7 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:backgroundTint="#FFF0CA"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="Roughness"
+            android:text="Sharpness"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
@@ -127,7 +127,7 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:backgroundTint="#BFFFB0"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="Warmth"
+            android:text="Brightness"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
@@ -138,7 +138,7 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:backgroundTint="#CAD3FF"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="Sharpness"
+            android:text="Boominess"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
@@ -149,7 +149,7 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/nanum_square_bold"
             android:backgroundTint="#F8CAFF"
-            android:text="Boominess"
+            android:text="Depth"
             android:textSize="20sp"
             app:cornerRadius="10dp"
 
