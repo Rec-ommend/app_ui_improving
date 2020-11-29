@@ -17,8 +17,8 @@ import com.example.rec_commend.R;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
