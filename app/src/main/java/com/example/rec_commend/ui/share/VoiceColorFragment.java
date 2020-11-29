@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
@@ -53,6 +54,12 @@ public class VoiceColorFragment extends Fragment {
     private Button facebookBtn;
     private Button instagramBtn;
     private Button twitterBtn;
+    private Button roughBtn;
+    private Button warmBtn;
+    private Button sharpBtn;
+    private Button brightBtn;
+    private Button boomBtn;
+    private Button depthBtn;
     private Button popupCloseBtn;
 
     // User voice color
@@ -154,6 +161,37 @@ public class VoiceColorFragment extends Fragment {
         kakaoBtn = (Button) layout.findViewById(R.id.kakao_btn);
         kakaoBtn.setOnClickListener(this::setKakaoBtn);
 */
+        Toast toast=Toast.makeText(getActivity(), "Toast test",Toast.LENGTH_SHORT);
+        roughBtn = (Button) layout.findViewById(R.id.rough_btn);
+        roughBtn.setOnClickListener((view)->{
+            toast.setText("Roughness="+(r/16));
+            toast.show();
+        });
+        warmBtn = (Button) layout.findViewById(R.id.warm_btn);
+        warmBtn.setOnClickListener((view)->{
+            toast.setText("Warmth="+(r%16));
+            toast.show();
+        });
+        sharpBtn = (Button) layout.findViewById(R.id.sharp_btn);
+        sharpBtn.setOnClickListener((view)->{
+            toast.setText("Sharpness="+(g/16));
+            toast.show();
+        });
+        brightBtn = (Button) layout.findViewById(R.id.bright_btn);
+        brightBtn.setOnClickListener((view)->{
+            toast.setText("Brightness="+(g%16));
+            toast.show();
+        });
+        boomBtn = (Button) layout.findViewById(R.id.boom_btn);
+        boomBtn.setOnClickListener((view)->{
+            toast.setText("Boominess="+(b/16));
+            toast.show();
+        });
+        depthBtn = (Button) layout.findViewById(R.id.depth_btn);
+        depthBtn.setOnClickListener((view)->{
+            toast.setText("Depth="+(b%16));
+            toast.show();
+        });
         popupCloseBtn = (Button) layout.findViewById(R.id.popup_close_btn);
         popupCloseBtn.setOnClickListener((view)->{
             sharePopup.dismiss();
