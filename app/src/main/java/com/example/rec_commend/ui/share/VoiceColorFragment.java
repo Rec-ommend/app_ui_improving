@@ -1,12 +1,17 @@
 package com.example.rec_commend.ui.share;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -27,6 +33,7 @@ import com.kakao.message.template.LinkObject;
 import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +48,7 @@ public class VoiceColorFragment extends Fragment {
     private ImageView voiceColorView;
     private Button shareBtn;
     private PopupWindow sharePopup;
+    private Button simBtn;
     private Button kakaoBtn;
     private Button facebookBtn;
     private Button instagramBtn;
@@ -88,9 +96,12 @@ public class VoiceColorFragment extends Fragment {
 
         shareBtn = root.findViewById(R.id.share_btn);
         shareBtn.setOnClickListener((view)->{
+            sharing();
+        });
+        simBtn=root.findViewById(R.id.sim_Btn);
+        simBtn.setOnClickListener((view)->{
             initPopup();
         });
-
         ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(false); // disable the button
@@ -100,6 +111,27 @@ public class VoiceColorFragment extends Fragment {
 
         return root;
     }
+    private void sharing(){
+        LinearLayout con=(LinearLayout)getView().findViewById(R.id.conslayout);
+        Bitmap bitmap = Bitmap.createBitmap(con.getWidth(), con.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        con.draw(canvas);
+        Uri uri=getImageUri(getActivity(),bitmap);
+
+
+        Intent shareintent=new Intent(Intent.ACTION_SEND);
+
+        shareintent.putExtra(Intent.EXTRA_STREAM,uri);
+        shareintent.setType("image/*");
+        startActivity(Intent.createChooser(shareintent,"공유"));
+    }
+    private Uri getImageUri(Context context, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
 
     private void initPopup(){
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -118,10 +150,10 @@ public class VoiceColorFragment extends Fragment {
 
         sharePopup.setOnDismissListener(()->{
         });
-
+/*
         kakaoBtn = (Button) layout.findViewById(R.id.kakao_btn);
         kakaoBtn.setOnClickListener(this::setKakaoBtn);
-
+*/
         popupCloseBtn = (Button) layout.findViewById(R.id.popup_close_btn);
         popupCloseBtn.setOnClickListener((view)->{
             sharePopup.dismiss();

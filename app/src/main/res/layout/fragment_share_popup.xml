@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="30dp">
-
+<!--
         <Button
             android:id="@+id/kakao_btn"
             android:layout_width="match_parent"
@@ -67,6 +67,93 @@
             app:cornerRadius="15dp"
             app:icon="@drawable/ic_twitter"
             app:iconSize="25dp" />
+-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Voice Color는 음색의 속성을 "
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="각 자리에 매핑한 것입니다 "
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textColor="#000000"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:backgroundTint="#FFD9CF"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="Depth"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#FFE2CA"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="Brightness"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:backgroundTint="#FFF0CA"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="Roughness"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:backgroundTint="#BFFFB0"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="Warmth"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:backgroundTint="#CAD3FF"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="Sharpness"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:fontFamily="@font/nanum_square_bold"
+            android:backgroundTint="#F8CAFF"
+            android:text="Boominess"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+
+            />
 
         <Button
             android:id="@+id/popup_close_btn"
