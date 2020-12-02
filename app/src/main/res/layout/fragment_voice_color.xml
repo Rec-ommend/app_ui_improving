@@ -14,7 +14,7 @@
         android:id="@+id/share_description"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:text="@string/share_description_m"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -49,30 +49,32 @@
 
     <Button
         android:id="@+id/share_btn"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal|center_vertical"
         android:fontFamily="@font/nanum_square_bold"
         android:text="@string/title_share_btn"
         android:textSize="30sp"
         app:cornerRadius="15dp"
-        app:icon="@drawable/ic_baseline_share_24" />
+        app:icon="@drawable/ic_baseline_share_24"
+        app:iconSize="30dp" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.1" />
+
     <Button
         android:id="@+id/sim_Btn"
         android:layout_width="250dp"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal|center_vertical"
         android:fontFamily="@font/nanum_square_bold"
         android:text="@string/title_sim_btn"
         android:textSize="30sp"
-        app:cornerRadius="10dp"
+        app:cornerRadius="15dp"
         app:icon="@drawable/ic_baseline_info_24"
 
-        />
+        app:iconSize="30dp" />
 
 </LinearLayout>
