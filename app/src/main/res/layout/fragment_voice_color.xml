@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/description_share"
+        android:text="@string/share_description_m"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp" />

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
@@ -30,12 +31,15 @@ public class SongListFragment extends Fragment {
 
     //UI elements
     private RecyclerView recyclerView;
-    private ImageButton myVoiceBtn;
+    private ImageButton resultBtn;
+    private TextView resultDescription;
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "jsonData";
+    private static final String ARG_PARAM2 = "searchMode";
 
     private String jsonData;
+    private String searchMode;
     private final Map<String, Double> voiceTimbreNorm = new HashMap<String, Double>();
 
     /**
@@ -44,10 +48,11 @@ public class SongListFragment extends Fragment {
      */
     public SongListFragment() {}
 
-    public static SongListFragment newInstance(String jsonData) {
+    public static SongListFragment newInstance(String _jsonData, String _searchMode) {
         SongListFragment fragment = new SongListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, jsonData);
+        args.putString(ARG_PARAM1, _jsonData);
+        args.putString(ARG_PARAM2, _searchMode);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,6 +62,7 @@ public class SongListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             jsonData = getArguments().getString(ARG_PARAM1);
+            searchMode = getArguments().getString(ARG_PARAM2);
         }
         ActionBar actionBar = ((MainActivity)getActivity()).getSupportActionBar();
         assert actionBar != null;
@@ -67,7 +73,14 @@ public class SongListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_song_list, container, false);
-        myVoiceBtn = root.findViewById(R.id.my_voice_btn);
+
+        resultDescription = root.findViewById(R.id.result_desc_text);
+        if(searchMode == "M") // Music search
+            resultDescription.setText(R.string.result_description_m);
+        else // searchMode == "T" // Tune search
+            resultDescription.setText(R.string.result_description_t);
+
+        resultBtn = root.findViewById(R.id.result_btn);
 
         ArrayList<SongListItem> songList = new ArrayList<SongListItem>();
         try {
@@ -97,12 +110,13 @@ public class SongListFragment extends Fragment {
             e.printStackTrace();
         }
 
-        myVoiceBtn.setOnClickListener((view)->{
+        resultBtn.setOnClickListener((view)->{
             int[] rgb = colorMapping(voiceTimbreNorm);
             Bundle bundle = new Bundle();
             bundle.putInt("r", rgb[0]);
             bundle.putInt("g", rgb[1]);
             bundle.putInt("b", rgb[2]);
+            bundle.putString("searchMode", searchMode);
             Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
         });
 
