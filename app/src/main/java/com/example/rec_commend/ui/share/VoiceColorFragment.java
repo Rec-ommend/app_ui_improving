@@ -35,8 +35,10 @@ public class VoiceColorFragment extends Fragment {
     private static final String ARG_R = "r";
     private static final String ARG_G = "g";
     private static final String ARG_B = "b";
+    private static final String ARG_SEARCH_MODE = "searchMode";
 
     // UI elements
+    private TextView shareDescription;
     private TextView voiceColorHex;
     private ImageView voiceColorView;
     private Button shareBtn;
@@ -52,14 +54,17 @@ public class VoiceColorFragment extends Fragment {
     private int g;
     private int b;
 
+    private String searchMode;
+
     public VoiceColorFragment() {}
 
-    public static VoiceColorFragment newInstance(int r, int g, int b) {
+    public static VoiceColorFragment newInstance(int _r, int _g, int _b, String _mode) {
         VoiceColorFragment fragment = new VoiceColorFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_R, r);
-        args.putInt(ARG_G, g);
-        args.putInt(ARG_B, b);
+        args.putInt(ARG_R, _r);
+        args.putInt(ARG_G, _g);
+        args.putInt(ARG_B, _b);
+        args.putString(ARG_SEARCH_MODE, _mode);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,6 +76,7 @@ public class VoiceColorFragment extends Fragment {
             r = getArguments().getInt(ARG_R);
             g = getArguments().getInt(ARG_G);
             b = getArguments().getInt(ARG_B);
+            searchMode = getArguments().getString(ARG_SEARCH_MODE);
         }
     }
 
@@ -79,6 +85,12 @@ public class VoiceColorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_voice_color, container, false);
+
+        shareDescription = root.findViewById(R.id.share_description);
+        if(searchMode == "M") // Music search
+            shareDescription.setText(R.string.share_description_m);
+        else // searchMode == "T" // Tune search
+            shareDescription.setText(R.string.share_description_t);
 
         voiceColorHex = root.findViewById(R.id.voice_color_hex);
         voiceColorHex.setText(String.format("#%02X%02X%02X", r, g, b));

@@ -14,6 +14,9 @@
     <string name="title_preference_year_start">시작 연도</string>
     <string name="title_preference_year_end">끝 연도</string>
     <string name="title_share">Share</string>
-    <string name="description_share">당신의 Voice Color 는</string>
     <string name="title_share_btn">공유하기</string>
+    <string name="share_description_m">당신의 Voice Color 는</string>
+    <string name="share_description_t">노래의 Timbre Color 는</string>
+    <string name="result_description_m">내 음색 분석 결과</string>
+    <string name="result_description_t">노래 음색 분석 결과</string>
 </resources>

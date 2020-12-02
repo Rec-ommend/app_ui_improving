@@ -1,7 +1,6 @@
 package com.example.rec_commend.ui;
 
 import android.Manifest;
-import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
@@ -14,10 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,21 +23,14 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.FFmpeg;
-import com.example.rec_commend.MultipartUtility;
 import com.example.rec_commend.R;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -63,6 +52,9 @@ public abstract class SearchFragment extends Fragment {
     //abstract functions
     abstract protected void setDescription();
     abstract protected void setPostURL();
+    abstract protected List<String> setPostDataAndRequest(String filePath) throws IOException;
+
+    protected String searchMode;
 
     //variable for recording
     private boolean isRecording;
@@ -90,7 +82,7 @@ public abstract class SearchFragment extends Fragment {
     private Thread waveThread;
 
     //app preference
-    private SharedPreferences preferences;
+    protected SharedPreferences preferences;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //setting UI elements
@@ -229,20 +221,8 @@ public abstract class SearchFragment extends Fragment {
             public void run(){
                 try {
                     setPostURL();
-                    MultipartUtility multipart = new MultipartUtility(urlString, "UTF-8");
 
-                    multipart.addFilePart("voice", new File(filePath));
-
-                    preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    String[] genreArr = (String[]) preferences.getStringSet("genre", new HashSet<String>()).toArray(new String[0]);
-                    String genres = String.join("', '", genreArr);
-                    genres = "['" + genres + "']";
-                    System.out.println(genres);
-                    multipart.addFormField("genre", genres);
-                    multipart.addFormField("start", preferences.getString("start_year", "2000"));
-                    multipart.addFormField("end", preferences.getString("end_year", "2020"));
-
-                    List<String> response = multipart.finish();
+                    List<String> response = setPostDataAndRequest(filePath);
 
                     System.out.println("SERVER REPLIED:");
 
@@ -253,13 +233,18 @@ public abstract class SearchFragment extends Fragment {
                     // Sending data to result page.
                     Bundle bundle = new Bundle();
                     bundle.putString("jsonData", fullResponse);
+                    bundle.putString("searchMode", searchMode);
                     if(getActivity() != null)
                         getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle));
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    if(getActivity() != null)
+                        getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_home));
                 } catch (NullPointerException e){
                     e.printStackTrace();
+                    if(getActivity() != null)
+                        getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_home));
                 }
             }
         };
