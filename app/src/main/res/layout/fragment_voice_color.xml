@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/conslayout"
     android:orientation="vertical"
     android:padding="30dp"
+    android:background="#FFFFFF"
     tools:context=".ui.share.VoiceColorFragment">
 
     <TextView
@@ -59,6 +61,18 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5" />
+        android:layout_weight="0.1" />
+    <Button
+        android:id="@+id/sim_Btn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="@string/title_sim_btn"
+        android:textSize="30sp"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/ic_baseline_info_24"
+
+        />
 
 </LinearLayout>
