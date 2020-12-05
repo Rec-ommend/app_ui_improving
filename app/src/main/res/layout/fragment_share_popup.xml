@@ -87,81 +87,18 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textColor="#000000"
             />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:id="@+id/rough_btn"
-            android:backgroundTint="#FFD9CF"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="Roughness"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
 
-            />
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:backgroundTint="#FFE2CA"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:fontFamily="@font/nanum_square_bold"
-            android:id="@+id/warm_btn"
-            android:text="Warmth"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
+            <TextView
+                android:id="@+id/timbre_data_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="boominess = 00.000\nhardness = 00.0000\nbrightness = 00.000\ndepth = 00.000\nwarmth = 00.000\nroughness = 00.000\nsharpness = 00.000"
+                android:textSize="18sp" />
 
-            />
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#FFF0CA"
-            android:fontFamily="@font/nanum_square_bold"
-            android:id="@+id/sharp_btn"
-            android:text="Sharpness"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
-
-            />
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#BFFFB0"
-            android:fontFamily="@font/nanum_square_bold"
-            android:id="@+id/bright_btn"
-            android:text="Brightness"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
-
-            />
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:backgroundTint="#CAD3FF"
-            android:id="@+id/boom_btn"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="Boominess"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
-
-            />
-        <Button
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:fontFamily="@font/nanum_square_bold"
-            android:backgroundTint="#F8CAFF"
-            android:id="@+id/depth_btn"
-            android:text="Depth"
-            android:textSize="20sp"
-            app:cornerRadius="10dp"
-
-            />
-
-        <Button
+            <Button
             android:id="@+id/popup_close_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

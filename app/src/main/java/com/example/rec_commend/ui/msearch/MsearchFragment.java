@@ -38,7 +38,7 @@ public class MsearchFragment extends SearchFragment {
         multipart.addFilePart("voice", new File(filePath));
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String[] genreArr = (String[]) preferences.getStringSet("genre", new HashSet<String>()).toArray(new String[0]);
+        String[] genreArr = (String[]) preferences.getStringSet("genre", new HashSet<>()).toArray(new String[0]);
         String genres = String.join("', '", genreArr);
         genres = "['" + genres + "']";
         System.out.println(genres);

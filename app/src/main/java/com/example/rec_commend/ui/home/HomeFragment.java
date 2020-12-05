@@ -27,14 +27,10 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         msearch_btn = root.findViewById(R.id.msearch_btn);
-        msearch_btn.setOnClickListener((v)->{
-            Navigation.findNavController(v).navigate(R.id.navigation_msearch);
-        });
+        msearch_btn.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_msearch));
 
         tsearch_btn = root.findViewById(R.id.tsearch_btn);
-        tsearch_btn.setOnClickListener((v)->{
-            Navigation.findNavController(v).navigate(R.id.navigation_tsearch);
-        });
+        tsearch_btn.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_tsearch));
 
         return root;
     }

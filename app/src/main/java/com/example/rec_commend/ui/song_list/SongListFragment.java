@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,8 @@ public class SongListFragment extends Fragment {
 
     private String jsonData;
     private String searchMode;
-    private final Map<String, Double> voiceTimbreNorm = new HashMap<String, Double>();
+    private final Map<String, Double> timbreNorm = new HashMap<>();
+    private final Map<String, Double> timbre = new HashMap<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -75,16 +77,17 @@ public class SongListFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_song_list, container, false);
 
         resultDescription = root.findViewById(R.id.result_desc_text);
-        if(searchMode == "M") // Music search
+        if(searchMode.equals("M")) // Music search
             resultDescription.setText(R.string.result_description_m);
         else // searchMode == "T" // Tune search
             resultDescription.setText(R.string.result_description_t);
 
         resultBtn = root.findViewById(R.id.result_btn);
 
-        ArrayList<SongListItem> songList = new ArrayList<SongListItem>();
+        ArrayList<SongListItem> songList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonData);
+
             JSONArray songArray = new JSONArray(jsonObject.getString("song"));
             for(int i = 0; i < songArray.length(); i++){
                 JSONObject jsonSong = (JSONObject) songArray.get(i);
@@ -98,25 +101,30 @@ public class SongListFragment extends Fragment {
                 ));
             }
 
-            JSONObject voiceTimbreNormObject = jsonObject.getJSONObject("timbre");
-            JSONArray attrs = voiceTimbreNormObject.names();
+            JSONObject timbreNormObject = jsonObject.getJSONObject("timbre");
+            JSONArray attrs = timbreNormObject.names();
             for(int i = 0; i < attrs.length(); i++){
                 String attr = attrs.getString(i);
-                voiceTimbreNorm.put(attr, voiceTimbreNormObject.getDouble(attr));
+                timbreNorm.put(attr, timbreNormObject.getDouble(attr));
             }
-            System.out.println(voiceTimbreNorm);
+            System.out.println(timbreNorm);
+
+            JSONObject timbreObject = jsonObject.getJSONObject("origin");
+            for(int i = 0; i < attrs.length(); i++){
+                String attr = attrs.getString(i);
+                timbre.put(attr, timbreObject.getDouble(attr));
+            }
+            System.out.println(timbre);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         resultBtn.setOnClickListener((view)->{
-            int[] rgb = colorMapping(voiceTimbreNorm);
             Bundle bundle = new Bundle();
-            bundle.putInt("r", rgb[0]);
-            bundle.putInt("g", rgb[1]);
-            bundle.putInt("b", rgb[2]);
             bundle.putString("searchMode", searchMode);
+            bundle.putSerializable("timbre", (Serializable) timbre);
+            bundle.putSerializable("timbreNorm", (Serializable) timbreNorm);
             Navigation.findNavController(view).navigate(R.id.navigation_share, bundle);
         });
 
@@ -134,16 +142,4 @@ public class SongListFragment extends Fragment {
         return root;
     }
 
-    private int[] colorMapping(Map<String, Double> timbre){
-        double depth = Math.max(Math.min(timbre.get("depth"), 1), 0);
-        double brightness = Math.max(Math.min(timbre.get("brightness"), 1), 0);
-        double roughness = Math.max(Math.min(timbre.get("roughness"), 1), 0);
-        double warmth = Math.max(Math.min(timbre.get("warmth"), 1), 0);
-        double sharpness = Math.max(Math.min(timbre.get("sharpness"), 1), 0);
-        double boominess = Math.max(Math.min(timbre.get("boominess"), 1), 0);
-        int r = (int) (roughness * 225 + 15 + warmth * 15);
-        int g = (int) (sharpness * 225 + 15 + brightness * 15);
-        int b = (int) (boominess * 225 + 15 + depth * 15);
-        return new int[]{r, g, b};
-    }
 }
