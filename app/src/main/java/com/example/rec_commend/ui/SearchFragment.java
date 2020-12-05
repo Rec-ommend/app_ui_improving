@@ -71,12 +71,12 @@ public abstract class SearchFragment extends Fragment {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
-    private String [] permissions = {Manifest.permission.RECORD_AUDIO};
+    private final String [] permissions = {Manifest.permission.RECORD_AUDIO};
 
     //variable for http post
     private Thread postThread;
     protected static String urlString;
-    private static final String testJson = "{\"song\":\"[{\\\"id\\\":\\\"tmFmFNn5-OM\\\",\\\"title\\\":\\\"Puss (Prod.by \\\\ub77c\\\\uc774\\\\uba38)\\\",\\\"singer\\\":\\\"\\\\uc9c0\\\\ubbfc (AOA), \\\\uc544\\\\uc774\\\\uc5b8\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.03.20\\\",\\\"timbre_similarity\\\":98.7300118817},{\\\"id\\\":\\\"dj-OEG32OR4\\\",\\\"title\\\":\\\"Forever (Prod. By GRAY)\\\",\\\"singer\\\":\\\"BewhY (\\\\ube44\\\\uc640\\\\uc774)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2016.07.02\\\",\\\"timbre_similarity\\\":140.948202667},{\\\"id\\\":\\\"E-HXf-Dih3c\\\",\\\"title\\\":\\\"\\\\uc0ac\\\\uc774\\\\uba3c \\\\ub3c4\\\\ubbf8\\\\ub2c9\\\",\\\"singer\\\":\\\"\\\\uc0ac\\\\uc774\\\\uba3c \\\\ub3c4\\\\ubbf8\\\\ub2c9\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.08.21\\\",\\\"timbre_similarity\\\":143.5430228883},{\\\"id\\\":\\\"aFsS59DkFhc\\\",\\\"title\\\":\\\"Okey Dokey\\\",\\\"singer\\\":\\\"MINO (\\\\uc1a1\\\\ubbfc\\\\ud638), \\\\uc9c0\\\\ucf54 (ZICO)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.08.29\\\",\\\"timbre_similarity\\\":153.3020229043},{\\\"id\\\":\\\"UsaJsymfuWU\\\",\\\"title\\\":\\\"Boys And Girls (Feat. Babylon)\\\",\\\"singer\\\":\\\"\\\\uc9c0\\\\ucf54 (ZICO)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.11.03\\\",\\\"timbre_similarity\\\":174.1333598163},{\\\"id\\\":\\\"iIPH8LFYFRk\\\",\\\"title\\\":\\\"\\\\uc5d0\\\\ub77c \\\\ubaa8\\\\ub974\\\\uaca0\\\\ub2e4\\\",\\\"singer\\\":\\\"BIGBANG\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2016.12.13\\\",\\\"timbre_similarity\\\":185.7990052656},{\\\"id\\\":\\\"pFuJAIMQjHk\\\",\\\"title\\\":\\\"\\\\uc74c\\\\uc624\\\\uc544\\\\uc608 (Um Oh Ah Yeh)\\\",\\\"singer\\\":\\\"\\\\ub9c8\\\\ub9c8\\\\ubb34 (Mamamoo)\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2015.06.19\\\",\\\"timbre_similarity\\\":202.6362291478},{\\\"id\\\":\\\"gx_mg-1WhWw\\\",\\\"title\\\":\\\"\\\\ubab8\\\\ub9e4 (MOMMAE) (Feat. Ugly Duck)\\\",\\\"singer\\\":\\\"\\\\ubc15\\\\uc7ac\\\\ubc94\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.05.22\\\",\\\"timbre_similarity\\\":203.4665086794},{\\\"id\\\":\\\"F4qfN5UeFvQ\\\",\\\"title\\\":\\\"\\\\uc8fc\\\\uc778\\\\uacf5\\\",\\\"singer\\\":\\\"\\\\uc120\\\\ubbf8\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2018.01.18\\\",\\\"timbre_similarity\\\":204.769446035},{\\\"id\\\":\\\"89kTb73csYg\\\",\\\"title\\\":\\\"Forever Young\\\",\\\"singer\\\":\\\"BLACKPINK\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2018.06.15\\\",\\\"timbre_similarity\\\":209.8093504768}]\",\"timbre\":{\"boominess\":0.3933148122086359,\"brightness\":0.916696793346051,\"depth\":0.3244571326418235,\"hardness\":1.3787054791923,\"reverb\":0,\"roughness\":1.1120699737927724,\"sharpness\":0.9450311890492772,\"warmth\":0.07938602069283819}}";
+    private static final String testJson = "{\"origin\":{\"boominess\":17.623630224713473,\"brightness\":69.78387273942865,\"depth\":35.3642014943956,\"hardness\":66.01813382600065,\"reverb\":0,\"roughness\":61.714248729850794,\"sharpness\":58.738026616840145,\"warmth\":34.881154828579945},\"song\":\"[{\\\"id\\\":\\\"R3Fwdnij49o\\\",\\\"title\\\":\\\"\\\\uc2dc\\\\uac04\\\\uc758 \\\\ubc14\\\\uae65\\\",\\\"singer\\\":\\\"\\\\uc544\\\\uc774\\\\uc720\\\",\\\"genre\\\":\\\"\\\\ub85d\\\\/\\\\uba54\\\\ud0c8\\\",\\\"release\\\":\\\"2019.11.01\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"qEYOyZVWlzs\\\",\\\"title\\\":\\\"\\\\uc0ac\\\\ubfd0\\\\uc0ac\\\\ubfd0\\\",\\\"singer\\\":\\\"AOA\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4\\\",\\\"release\\\":\\\"2014.11.11\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"LHUAmHYOXFM\\\",\\\"title\\\":\\\"\\\\uc544\\\\ub9c8\\\\ub450 (feat.\\\\uc6b0\\\\uc6d0\\\\uc7ac, \\\\uae40\\\\ud6a8\\\\uc740, \\\\ub109\\\\uc0b4, Huckleberry P)\\\",\\\"singer\\\":\\\"\\\\uc5fc\\\\ub530, \\\\ub525\\\\ud50c\\\\ub85c\\\\uc6b0, \\\\ud314\\\\ub85c\\\\uc54c\\\\ud1a0 (Paloalto), The Quiett, \\\\uc0ac\\\\uc774\\\\uba3c \\\\ub3c4\\\\ubbf8\\\\ub2c9\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2019.12.03\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"dotD8om8HPs\\\",\\\"title\\\":\\\"\\\\uc560\\\\uc1a1\\\\uc774 (CF - \\\\uc368\\\\ub2c8\\\\ud150)\\\",\\\"singer\\\":\\\"\\\\ub809\\\\uc2dc\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2003.10.07\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"AHbSzXM1e_s\\\",\\\"title\\\":\\\"\\\\uc778\\\\uae30 (Feat. \\\\uc1a1\\\\uac00\\\\uc778, \\\\ucc48\\\\uc2ac\\\\ub7ec)\\\",\\\"singer\\\":\\\"MC\\\\ubabd\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2019.10.25\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"ZlVdJcS1Tms\\\",\\\"title\\\":\\\"To My Love (Korean Ver.)\\\",\\\"singer\\\":\\\"\\\\uc724\\\\ubbf8\\\\ub798\\\",\\\"genre\\\":\\\"R&B\\\\/Soul\\\",\\\"release\\\":\\\"2002.12.01\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"W4SXOQ7xFoo\\\",\\\"title\\\":\\\"\\\\uc548\\\\uc544\\\\uc918\\\",\\\"singer\\\":\\\"\\\\uc815\\\\uc900\\\\uc77c\\\",\\\"genre\\\":\\\"\\\\uc778\\\\ub514\\\\uc74c\\\\uc545, \\\\ub85d\\\\/\\\\uba54\\\\ud0c8\\\",\\\"release\\\":\\\"2011.11.23\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"mcjR94Q1qSI\\\",\\\"title\\\":\\\"The Time Goes On\\\",\\\"singer\\\":\\\"BewhY (\\\\ube44\\\\uc640\\\\uc774)\\\",\\\"genre\\\":\\\"\\\\ub7a9\\\\/\\\\ud799\\\\ud569\\\",\\\"release\\\":\\\"2015.03.10\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"ZPhttQ3kK2o\\\",\\\"title\\\":\\\"Music\\\",\\\"singer\\\":\\\"\\\\ubc14\\\\ub2e4 (BADA)\\\",\\\"genre\\\":\\\"\\\\ub304\\\\uc2a4, \\\\ubc1c\\\\ub77c\\\\ub4dc\\\",\\\"release\\\":\\\"2003.10.22\\\",\\\"timbre_similarity\\\":0},{\\\"id\\\":\\\"PDvtF8wuKjQ\\\",\\\"title\\\":\\\"\\\\uc694\\\\uc998 \\\\ubc14\\\\uc05c\\\\uac00\\\\ubd10\\\",\\\"singer\\\":\\\"2BIC(\\\\ud22c\\\\ube45)\\\",\\\"genre\\\":\\\"R&B\\\\/Soul\\\",\\\"release\\\":\\\"2014.04.10\\\",\\\"timbre_similarity\\\":0}]\",\"timbre\":{\"boominess\":0.3933148122086359,\"brightness\":0.916696793346051,\"depth\":0.3244571326418235,\"hardness\":1.3787054791923,\"reverb\":0,\"roughness\":1.1120699737927724,\"sharpness\":0.9450311890492772,\"warmth\":0.07938602069283819}}";
 
     //wave form view thread
     private Thread waveThread;
@@ -129,6 +129,7 @@ public abstract class SearchFragment extends Fragment {
         jsonTestBtn.setOnClickListener((view)->{
             Bundle bundle = new Bundle();
             bundle.putString("jsonData", testJson);
+            bundle.putString("searchMode", "M");
             Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle);
         });
 
@@ -226,22 +227,18 @@ public abstract class SearchFragment extends Fragment {
 
                     System.out.println("SERVER REPLIED:");
 
-                    String fullResponse = "";
-                    for (String line : response) { fullResponse += line; }
+                    StringBuilder fullResponse = new StringBuilder();
+                    for (String line : response) { fullResponse.append(line); }
                     System.out.println(fullResponse);
 
                     // Sending data to result page.
                     Bundle bundle = new Bundle();
-                    bundle.putString("jsonData", fullResponse);
+                    bundle.putString("jsonData", fullResponse.toString());
                     bundle.putString("searchMode", searchMode);
                     if(getActivity() != null)
                         getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle));
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    if(getActivity() != null)
-                        getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_home));
-                } catch (NullPointerException e){
+                } catch (IOException | NullPointerException e) {
                     e.printStackTrace();
                     if(getActivity() != null)
                         getActivity().runOnUiThread(() -> Navigation.findNavController(view).navigate(R.id.navigation_home));

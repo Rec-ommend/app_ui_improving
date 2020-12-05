@@ -22,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rec_commend.MainActivity;
 import com.example.rec_commend.R;
@@ -35,15 +34,18 @@ import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
 
 import java.io.ByteArrayOutputStream;
+import java.security.KeyStore;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class VoiceColorFragment extends Fragment {
 
-    private static final String ARG_R = "r";
-    private static final String ARG_G = "g";
-    private static final String ARG_B = "b";
     private static final String ARG_SEARCH_MODE = "searchMode";
+    private static final String ARG_TIMBRE = "timbre";
+    private static final String ARG_TIMBRE_NORM = "timbreNorm";
 
     // UI elements
     private TextView shareDescription;
@@ -52,16 +54,7 @@ public class VoiceColorFragment extends Fragment {
     private Button shareBtn;
     private PopupWindow sharePopup;
     private Button simBtn;
-    private Button kakaoBtn;
-    private Button facebookBtn;
-    private Button instagramBtn;
-    private Button twitterBtn;
-    private Button roughBtn;
-    private Button warmBtn;
-    private Button sharpBtn;
-    private Button brightBtn;
-    private Button boomBtn;
-    private Button depthBtn;
+    private TextView timbreDataTextView;
     private Button popupCloseBtn;
 
     // User voice color
@@ -69,17 +62,18 @@ public class VoiceColorFragment extends Fragment {
     private int g;
     private int b;
 
+    private HashMap<String, Double> timbreNorm;
+    private HashMap<String, Double> timbre;
     private String searchMode;
 
     public VoiceColorFragment() {}
 
-    public static VoiceColorFragment newInstance(int _r, int _g, int _b, String _mode) {
+    public static VoiceColorFragment newInstance(String _mode, HashMap<String, Float> _timbreNorm, HashMap<String, Float> _timbre) {
         VoiceColorFragment fragment = new VoiceColorFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_R, _r);
-        args.putInt(ARG_G, _g);
-        args.putInt(ARG_B, _b);
         args.putString(ARG_SEARCH_MODE, _mode);
+        args.putSerializable(ARG_TIMBRE_NORM, _timbreNorm);
+        args.putSerializable(ARG_TIMBRE, _timbre);
         fragment.setArguments(args);
         return fragment;
     }
@@ -88,10 +82,10 @@ public class VoiceColorFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            r = getArguments().getInt(ARG_R);
-            g = getArguments().getInt(ARG_G);
-            b = getArguments().getInt(ARG_B);
             searchMode = getArguments().getString(ARG_SEARCH_MODE);
+            timbreNorm = (HashMap<String, Double>) getArguments().getSerializable(ARG_TIMBRE_NORM);
+            timbre = (HashMap<String, Double>) getArguments().getSerializable(ARG_TIMBRE);
+            colorMapping(timbreNorm);
         }
     }
 
@@ -102,7 +96,7 @@ public class VoiceColorFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_voice_color, container, false);
 
         shareDescription = root.findViewById(R.id.share_description);
-        if(searchMode == "M") // Music search
+        if(searchMode.equals("M")) // Music search
             shareDescription.setText(R.string.share_description_m);
         else // searchMode == "T" // Tune search
             shareDescription.setText(R.string.share_description_t);
@@ -114,13 +108,9 @@ public class VoiceColorFragment extends Fragment {
         voiceColorView.setColorFilter(Color.rgb(r, g, b));
 
         shareBtn = root.findViewById(R.id.share_btn);
-        shareBtn.setOnClickListener((view)->{
-            sharing();
-        });
+        shareBtn.setOnClickListener((view)-> sharing());
         simBtn=root.findViewById(R.id.sim_Btn);
-        simBtn.setOnClickListener((view)->{
-            initPopup();
-        });
+        simBtn.setOnClickListener((view)-> initPopup());
         ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(false); // disable the button
@@ -130,6 +120,19 @@ public class VoiceColorFragment extends Fragment {
 
         return root;
     }
+
+    private void colorMapping(Map<String, Double> _timbre){
+        double depth = Math.max(Math.min(_timbre.get("depth"), 1), 0);
+        double brightness = Math.max(Math.min(_timbre.get("brightness"), 1), 0);
+        double roughness = Math.max(Math.min(_timbre.get("roughness"), 1), 0);
+        double warmth = Math.max(Math.min(_timbre.get("warmth"), 1), 0);
+        double sharpness = Math.max(Math.min(_timbre.get("sharpness"), 1), 0);
+        double boominess = Math.max(Math.min(_timbre.get("boominess"), 1), 0);
+        r = (int) (roughness * 225 + 15 + warmth * 15);
+        g = (int) (sharpness * 225 + 15 + brightness * 15);
+        b = (int) (boominess * 225 + 15 + depth * 15);
+    }
+
     private void sharing(){
         LinearLayout con=(LinearLayout)getView().findViewById(R.id.conslayout);
         Bitmap bitmap = Bitmap.createBitmap(con.getWidth(), con.getHeight(), Bitmap.Config.ARGB_8888);
@@ -144,13 +147,13 @@ public class VoiceColorFragment extends Fragment {
         shareintent.setType("image/*");
         startActivity(Intent.createChooser(shareintent,"공유"));
     }
+
     private Uri getImageUri(Context context, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
-
 
     private void initPopup(){
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -167,48 +170,30 @@ public class VoiceColorFragment extends Fragment {
         p.dimAmount = 0.3f;
         wm.updateViewLayout(container, p);
 
-        sharePopup.setOnDismissListener(()->{
-        });
 /*
         kakaoBtn = (Button) layout.findViewById(R.id.kakao_btn);
         kakaoBtn.setOnClickListener(this::setKakaoBtn);
 */
-        Toast toast=Toast.makeText(getActivity(), "Toast test",Toast.LENGTH_SHORT);
-        roughBtn = (Button) layout.findViewById(R.id.rough_btn);
-        roughBtn.setOnClickListener((view)->{
-            toast.setText("Roughness="+(r/16));
-            toast.show();
-        });
-        warmBtn = (Button) layout.findViewById(R.id.warm_btn);
-        warmBtn.setOnClickListener((view)->{
-            toast.setText("Warmth="+(r%16));
-            toast.show();
-        });
-        sharpBtn = (Button) layout.findViewById(R.id.sharp_btn);
-        sharpBtn.setOnClickListener((view)->{
-            toast.setText("Sharpness="+(g/16));
-            toast.show();
-        });
-        brightBtn = (Button) layout.findViewById(R.id.bright_btn);
-        brightBtn.setOnClickListener((view)->{
-            toast.setText("Brightness="+(g%16));
-            toast.show();
-        });
-        boomBtn = (Button) layout.findViewById(R.id.boom_btn);
-        boomBtn.setOnClickListener((view)->{
-            toast.setText("Boominess="+(b/16));
-            toast.show();
-        });
-        depthBtn = (Button) layout.findViewById(R.id.depth_btn);
-        depthBtn.setOnClickListener((view)->{
-            toast.setText("Depth="+(b%16));
-            toast.show();
-        });
-        popupCloseBtn = (Button) layout.findViewById(R.id.popup_close_btn);
-        popupCloseBtn.setOnClickListener((view)->{
-            sharePopup.dismiss();
-        });
 
+        timbreDataTextView = layout.findViewById(R.id.timbre_data_text);
+        StringBuilder timbreDataString = new StringBuilder();
+        for (Map.Entry entry : timbre.entrySet()) {
+            String key = (String) entry.getKey();
+            Double value = (Double) entry.getValue();
+
+            if (key.equals("reverb")) continue;
+
+            timbreDataString.append(key);
+            timbreDataString.append(" = ");
+            timbreDataString.append(String.format(Locale.KOREA, "%.3f", value));
+            timbreDataString.append("\n");
+        }
+        timbreDataTextView.setText(timbreDataString);
+
+        popupCloseBtn = (Button) layout.findViewById(R.id.popup_close_btn);
+        popupCloseBtn.setOnClickListener((view)-> sharePopup.dismiss());
+
+        // hide back button of action bar
         ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeButtonEnabled(false); // disable the button
