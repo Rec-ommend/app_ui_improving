@@ -39,9 +39,7 @@ public class OptionFragment extends Fragment {
         versionBtn = root.findViewById(R.id.version_btn);
         helpUsBtn = root.findViewById(R.id.help_us_btn);
 
-        preferenceBtn.setOnClickListener((view)->{
-            Navigation.findNavController(view).navigate(R.id.navigation_preference);
-        });
+        preferenceBtn.setOnClickListener((view)-> Navigation.findNavController(view).navigate(R.id.navigation_preference));
         return root;
     }
 }
