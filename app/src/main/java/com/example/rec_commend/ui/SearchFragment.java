@@ -44,7 +44,6 @@ public abstract class SearchFragment extends Fragment {
     protected TextView descriptionText;
     private Button recBtn;
     private ImageView recOverlay;
-    private Button jsonTestBtn;
     private TextView timerText;
     private WaveFormView waveFormView;
     private ProgressBar progressBar;
@@ -102,8 +101,6 @@ public abstract class SearchFragment extends Fragment {
         waveFormView = root.findViewById(R.id.siriView);
         initWaveFormView();
 
-        jsonTestBtn = root.findViewById(R.id.json_test_btn);
-
         progressBar = root.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -124,13 +121,6 @@ public abstract class SearchFragment extends Fragment {
                 isRecording = false;
                 stopRecording(view);
             }
-        });
-
-        jsonTestBtn.setOnClickListener((view)->{
-            Bundle bundle = new Bundle();
-            bundle.putString("jsonData", testJson);
-            bundle.putString("searchMode", "M");
-            Navigation.findNavController(view).navigate(R.id.navigation_song_list, bundle);
         });
 
         return root;
@@ -203,8 +193,8 @@ public abstract class SearchFragment extends Fragment {
                     Log.i(Config.TAG, "Async command execution completed successfully.");
                     //Post Request
                     //TODO: change to RELEASE code
-//                    postRequest(view, outputFile); //RELEASE
-                    postRequest(view, MP3TestFilePath); //DEBUG
+                    postRequest(view, outputFile); //RELEASE
+//                    postRequest(view, MP3TestFilePath); //DEBUG
                 } else if (returnCode == RETURN_CODE_CANCEL) {
                     Log.i(Config.TAG, "Async command execution cancelled by user.");
                 } else {

@@ -35,7 +35,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
             android:fontFamily="@font/nanum"
-            android:text="내 목소리와\n음색/톤이\n유사한 노래를 추천"
+            android:text="@string/msearch_btn_discription"
             android:textAlignment="viewEnd"
             android:textColor="@color/black"
             android:textSize="24sp" />
@@ -71,7 +71,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
             android:fontFamily="@font/nanum"
-            android:text="노래의 일부를\n검색하여\n유사한 노래를 추천"
+            android:text="@string/tsearch_btn_discription"
             android:textAlignment="viewEnd"
             android:textColor="@color/black"
             android:textSize="24sp" />

@@ -20,4 +20,6 @@
     <string name="result_description_m">내 음색 분석 결과</string>
     <string name="result_description_t">노래 음색 분석 결과</string>
     <string name="title_sim_btn">도움말</string>
+    <string name="msearch_btn_discription">내 목소리와\n음색/톤이\n유사한 노래를 추천</string>
+    <string name="tsearch_btn_discription">노래의 일부와\n음색/톤이\n유사한 노래를 추천</string>
 </resources>
