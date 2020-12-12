@@ -123,6 +123,15 @@ public abstract class SearchFragment extends Fragment {
             }
         });
 
+        //DEBUG
+        Button testBtn = root.findViewById(R.id.json_test_btn);
+        testBtn.setOnClickListener((v)->{
+            Bundle bundle = new Bundle();
+            bundle.putString("jsonData", testJson);
+            bundle.putString("searchMode", searchMode);
+            Navigation.findNavController(v).navigate(R.id.navigation_song_list, bundle);
+        });
+
         return root;
     }
     @Override
